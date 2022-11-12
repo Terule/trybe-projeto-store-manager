@@ -11,18 +11,6 @@ const productsDb = [
     {
       "id": 3,
       "name": "Escudo do Capitão América"
-    },
-    {
-      "id": 4,
-      "name": "Martelo de Thor"
-    },
-    {
-      "id": 5,
-      "name": "Traje de encolhimento"
-    },
-    {
-      "id": 6,
-      "name": "Escudo do Capitão América"
     }
   ]
 ];
@@ -38,18 +26,6 @@ const products = [
   },
   {
     "id": 3,
-    "name": "Escudo do Capitão América"
-  },
-  {
-    "id": 4,
-    "name": "Martelo de Thor"
-  },
-  {
-    "id": 5,
-    "name": "Traje de encolhimento"
-  },
-  {
-    "id": 6,
     "name": "Escudo do Capitão América"
   }
 ];
