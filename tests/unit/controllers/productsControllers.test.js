@@ -39,18 +39,18 @@ describe('Validando a camada controller', function () {
     expect(res.json).to.have.been.calledWith(product)
   });
 
-  // it('Verifica se é exibido erro quando o ID é inválido', async function () {
-  //     sinon.stub(productService, 'getById').resolves(undefined)
-  //   const req = { params: { id: 6 } }
-  //   const res = {}
-  //   res.status = sinon.stub().returns(res);
-  //   res.json = sinon.stub().returns();
+  it('Verifica se é exibido erro quando o ID é inválido', async function () {
+    sinon.stub(productService, 'getById').resolves(undefined)
+    const req = { params: { id: 6 } }
+    const res = {}
+    res.status = sinon.stub().returns(res);
+    res.send = sinon.stub().returns({ message: 'Product not found' });
 
-  //   await getById(req, res);
+    await getById(req, res);
 
-  //   expect(res.status).to.have.been.calledWith(404);
-  //   // expect(res.json).to.have.been.calledWith(product)
-  //   });
+    expect(res.status).to.have.been.calledWith(404);
+    expect(res.send).to.have.been.calledWith({ message: 'Product not found' })
+    });
   
   this.afterEach(sinon.restore)
 });
