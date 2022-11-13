@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const connection = require('../../../src/models/connection');
 const productsModel = require('../../../src/models/productsModel');
 
-const { productsDb, products, product } = require('./mocks/productsModel.mock');
+const { productsDb, products, product, insertResponse } = require('./mocks/productsModel.mock');
 
 describe('Testes de unidade do model de produtos', () => {
   it('Verifica se é possível buscar todos os produtos utilizando o model de produtos', async () => {
@@ -23,6 +23,17 @@ describe('Testes de unidade do model de produtos', () => {
 
     expect(result).to.deep.equal(product);
   });
+
+  it('Verifica se é possivel inserir um produto', async () => {
+    const newProduct = { name: 'Tesseract' }
+    
+    sinon.stub(connection, 'execute').resolves(insertResponse);
+
+    const result = await productsModel.insert(newProduct);
+
+    expect(result.insertId).to.be.equal(4);
+    expect(result.affectedRows).to.be.equal(1);
+  })
   
   afterEach(sinon.restore)
 });

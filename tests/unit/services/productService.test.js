@@ -4,10 +4,9 @@ const sinon = require('sinon');
 const productsModel = require('../../../src/models/productsModel');
 const productsService = require('../../../src/services/productsService');
 
-const { products, product } = require('./mocks/productService.mock');
+const { products, product, insertResponse } = require('./mocks/productService.mock');
 
 describe('Testa a camada service', function () {
-  console.log(productsService);
   it('verifica se é possível listar todos os produtos', async function () {
     sinon.stub(productsModel, 'getAllProducts').resolves(products)
 
@@ -25,4 +24,16 @@ describe('Testa a camada service', function () {
     expect(result).to.be.a('object');
     expect(result).to.be.deep.equal(product);
   });
+
+  it('Verifica se é possível inserir um produto', async () => {
+    const newProduct = { name: 'Tesseract' }
+    
+    sinon.stub(productsModel, 'insert').resolves(insertResponse)
+
+    const result = await productsService.insert(newProduct);
+
+    expect(result.insertId).to.be.equal(4)
+  });
+
+  afterEach(sinon.restore)
 });

@@ -19,7 +19,8 @@ const getById = async (req, res) => {
 
 const insertProduct = async (req, res) => {
   const { name } = req.body;
-  const result = await productService.insert({ name });
+  const response = await productService.insert({ name });
+  const result = await productService.getById(response.insertId);
   res.status(201).json(result);
 };
 
