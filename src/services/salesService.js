@@ -23,7 +23,13 @@ const insertSale = async (products) => {
   };
 };
 
+const getAllSales = async () => {
+  const result = await salesModel.getAllSales();
+  return result;
+};
+
 module.exports = {
   getById,
   insertSale,
+  getAllSales,
 };

@@ -7,6 +7,22 @@ const insertSale = async (req, res) => {
   res.status(201).json(result);
 };
 
+const getById = async (req, res) => {
+  const { id } = req.params;
+  const result = await salesService.getById(id);
+
+  if (result.length === 0) return res.status(404).send({ message: 'Sale not found' });
+  res.status(200).json(result);
+};
+
+const getAllSales = async (_req, res) => {
+  const result = await salesService.getAllSales();
+
+  res.status(200).json(result);
+};
+
 module.exports = {
   insertSale,
+  getById,
+  getAllSales,
 };

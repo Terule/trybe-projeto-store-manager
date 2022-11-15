@@ -1,10 +1,20 @@
 const express = require('express');
-const { getAllProducts, getById, insertProduct } = require('./controllers/productsControler');
+
 const nameValidation = require('./middlewares/nameValidation');
 const { isProductIdMissing, isProductIdValid } = require('./middlewares/productIdValidation'); 
 const { isQuantityMissing, isQuantityValid } = require('./middlewares/quantityValidation');
 
-const { insertSale } = require('./controllers/salesController');
+const {
+  getAllProducts,
+  getById: getProductById,
+  insertProduct,
+} = require('./controllers/productsControler');
+
+const {
+  insertSale,
+  getById: getSaleById,
+  getAllSales,
+} = require('./controllers/salesController');
 
 const app = express();
 app.use(express.json());
@@ -16,9 +26,13 @@ app.get('/', (_request, response) => {
 
 app.get('/products', getAllProducts);
 
-app.get('/products/:id', getById);
+app.get('/products/:id', getProductById);
 
 app.post('/products', nameValidation, insertProduct);
+
+app.get('/sales', getAllSales);
+
+app.get('/sales/:id', getSaleById);
 
 app.post('/sales',
   isProductIdMissing,
