@@ -1,3 +1,5 @@
+const productService = require('../services/productsService');
+
 const nameValidation = (req, res, next) => {
   const { name } = req.body;
   if (!name) return res.status(400).send({ message: '"name" is required' });
@@ -8,4 +10,11 @@ const nameValidation = (req, res, next) => {
   next();
 };
 
-module.exports = nameValidation;
+const idValidation = async (req, res, next) => {
+  const { id } = req.params;
+  const result = await productService.getById(id);
+  if (!id || !result) return res.status(404).send({ message: 'Product not found' });
+  next();
+};
+
+module.exports = { nameValidation, idValidation };

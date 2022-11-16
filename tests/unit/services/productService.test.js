@@ -6,7 +6,7 @@ const productsService = require('../../../src/services/productsService');
 
 const { products, product, insertResponse } = require('./mocks/productService.mock');
 
-describe('Testa a camada service', function () {
+describe('Testa a productService', function () {
   it('verifica se é possível listar todos os produtos', async function () {
     sinon.stub(productsModel, 'getAllProducts').resolves(products)
 

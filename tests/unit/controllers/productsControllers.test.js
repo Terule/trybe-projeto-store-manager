@@ -10,7 +10,7 @@ const productService = require('../../../src/services/productsService');
 
 const {products, product, insertResponse} = require('./mocks/productsControllers.mock')
 
-describe('Validando a camada controller', function () {
+describe('Testa a productController', function () {
   it('Verifica se é possivel recuperar todos os produtos', async function () {
     sinon.stub(productService, 'getAllProducts').resolves(products)
 

@@ -6,7 +6,7 @@ const productsModel = require('../../../src/models/productsModel');
 
 const { productsDb, products, product, insertResponse } = require('./mocks/productsModel.mock');
 
-describe('Testes de unidade do model de produtos', () => {
+describe('Testa a productModel', () => {
   it('Verifica se é possível buscar todos os produtos utilizando o model de produtos', async () => {
     sinon.stub(connection, 'execute').resolves(productsDb);
 
