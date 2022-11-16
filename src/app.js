@@ -9,6 +9,7 @@ const {
   getById: getProductById,
   insertProduct,
   updateProduct,
+  deleteById,
 } = require('./controllers/productsControler');
 
 const {
@@ -32,6 +33,8 @@ app.get('/products', getAllProducts);
 app.get('/products/:id', getProductById);
 
 app.put('/products/:id', nameValidation, idValidation, updateProduct);
+
+app.delete('/products/:id', idValidation, deleteById);
 
 app.post('/products', nameValidation, insertProduct);
 
