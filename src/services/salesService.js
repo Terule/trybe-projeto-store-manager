@@ -28,8 +28,13 @@ const getAllSales = async () => {
   return result;
 };
 
+const deleteSaleById = async (id) => {
+  await salesModel.deleteSaleById(id);
+};
+
 module.exports = {
   getById,
   insertSale,
   getAllSales,
+  deleteSaleById,
 };

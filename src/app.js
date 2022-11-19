@@ -16,7 +16,9 @@ const {
   insertSale,
   getById: getSaleById,
   getAllSales,
+  deleteSaleById,
 } = require('./controllers/salesController');
+const validateSaleId = require('./middlewares/salesValidation');
 
 // const test = require('./models/productsModel');
 
@@ -41,6 +43,8 @@ app.post('/products', nameValidation, insertProduct);
 app.get('/sales', getAllSales);
 
 app.get('/sales/:id', getSaleById);
+
+app.delete('/sales/:id', validateSaleId, deleteSaleById);
 
 app.post('/sales',
   isProductIdMissing,
