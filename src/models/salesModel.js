@@ -6,8 +6,8 @@ const insertSale = async () => {
   return insertId;
 };
 
-const insertSaleProducts = async (products) => {
-  const saleId = await insertSale();
+const insertSaleProducts = async (products, id = null) => {
+  const saleId = id || await insertSale();
   const placeholders = products.map((_) => '(?, ?, ?)').join(', ');
   const values = products
     .reduce((acc, { productId, quantity }) => [...acc, saleId, productId, quantity], []);
@@ -49,20 +49,33 @@ const getAllSales = async () => {
   return result;
 };
 
+const deleteProductsFromSale = async (id) => {
+  await connection.execute(`
+  DELETE FROM StoreManager.sales_products
+  WHERE sale_id = ?
+  `, [id]);
+};
+
 const deleteSaleById = async (id) => {
   await connection.execute(`
   DELETE FROM StoreManager.sales
   WHERE id = ?
   `, [id]);
-  await connection.execute(`
-  DELETE FROM StoreManager.sales_products
-  WHERE sale_id = ?
-  `, [id]);
+  await deleteProductsFromSale(id);
 }; 
+
+const updateSaleById = async (id, products) => {
+  await deleteProductsFromSale(id);
+  await insertSaleProducts(products, id);
+
+  const result = await getById(id);
+  return result;
+};
 
 module.exports = {
   insertSaleProducts,
   getById,
   getAllSales,
   deleteSaleById,
+  updateSaleById,
 };

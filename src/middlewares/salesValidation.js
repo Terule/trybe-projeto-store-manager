@@ -1,8 +1,8 @@
-const { getById } = require('../services/salesService');
+const salesService = require('../services/salesService');
 
 const validateSaleId = async (req, res, next) => {
   const { id } = req.params;
-  const result = await getById(id);
+  const result = await salesService.getById(id);
   if (!id || result.length === 0) return res.status(404).send({ message: 'Sale not found' });
   next();
 };
