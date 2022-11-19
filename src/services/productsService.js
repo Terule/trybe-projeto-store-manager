@@ -26,10 +26,17 @@ const deleteById = async (id) => {
   return result;
 };
 
+const getByQuery = async (query) => {
+  const result = await productsModel.getAllProducts();
+
+  return result.filter((item) => item.name.includes(query));
+}; 
+
 module.exports = {
   getAllProducts,
   getById,
   insert,
   update,
   deleteById,
+  getByQuery,
 };

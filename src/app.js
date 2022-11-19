@@ -10,6 +10,7 @@ const {
   insertProduct,
   updateProduct,
   deleteById,
+  getByQuery,
 } = require('./controllers/productsControler');
 
 const {
@@ -31,6 +32,8 @@ app.use(express.json());
 app.get('/', (_request, response) => {
   response.send();
 });
+
+app.get('/products/search', getByQuery);
 
 app.get('/products', getAllProducts);
 
