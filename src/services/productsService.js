@@ -18,8 +18,7 @@ const insert = async ({ name }) => {
 
 const update = async (id, name) => {
   await productsModel.update(id, name);
-
-  const result = await productsModel.update(id, name);
+  const result = await productsModel.getById(id);
   return result;
 };
 

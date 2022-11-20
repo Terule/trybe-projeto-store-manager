@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const productsModel = require('../../../src/models/productsModel');
 const productsService = require('../../../src/services/productsService');
 
-const { products, product, insertResponse, updateResult, deleteResult, queryResult } = require('./mocks/productService.mock');
+const { products, product, insertResponse, updateResult, deleteResult, queryResult, updatedProduct } = require('./mocks/productService.mock');
 
 describe('Testa a productService', function () {
   it('verifica se é possível listar todos os produtos', async function () {
@@ -37,10 +37,11 @@ describe('Testa a productService', function () {
 
   it('Verifica se é possível atualizar um produto', async () => {
     sinon.stub(productsModel, 'update').resolves(updateResult);
+    sinon.stub(productsModel, 'getById').resolves(updatedProduct)
 
     const result = await productsService.update(1, 'teste3');
 
-    expect(result).to.be.deep.equal(updateResult);
+    expect(result).to.be.deep.equal(updatedProduct);
   });
 
   it('Verifica se é possível apagar um produto', async () => {

@@ -13,6 +13,7 @@ const {
   updateResult,
   deleteDbResult,
   deleteResult,
+  updatedProduct,
 } = require('./mocks/productsModel.mock');
 
 describe('Testa a productModel', () => {

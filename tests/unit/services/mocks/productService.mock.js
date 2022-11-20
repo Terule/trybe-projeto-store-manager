@@ -28,6 +28,16 @@ const insertResponse = {
 };
 
 const updateResult = {
+  "fieldCount": 0,
+  "affectedRows": 1,
+  "insertId": 0,
+  "info": "Rows matched: 1  Changed: 0  Warnings: 0",
+  "serverStatus": 2,
+  "warningStatus": 0,
+  "changedRows": 0
+}
+
+const updatedProduct = {
   id: 1,
   name: 'teste3',
 }
@@ -59,4 +69,5 @@ module.exports = {
   updateResult,
   deleteResult,
   queryResult,
+  updatedProduct,
 };

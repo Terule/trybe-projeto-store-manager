@@ -70,6 +70,11 @@ const updateResult = {
   "changedRows": 0
 }
 
+const updatedProduct = {
+  id: 1,
+  name: 'teste3',
+}
+
 const deleteDbResult = [
   {
     "fieldCount": 0,
@@ -100,4 +105,5 @@ module.exports = {
   updateResult,
   deleteDbResult,
   deleteResult,
+  updatedProduct,
 };
