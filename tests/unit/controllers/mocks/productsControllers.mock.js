@@ -27,8 +27,14 @@ const insertResponse = {
   "warningStatus": 0
 };
 
+const updateResult = {
+  id: 1,
+  name: 'teste3',
+}
+
 module.exports = {
   products,
   product,
-  insertResponse
+  insertResponse,
+  updateResult,
 };

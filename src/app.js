@@ -23,7 +23,7 @@ const {
 
 const validateSaleId = require('./middlewares/salesValidation');
 
-// const test = require('./models/productsModel');
+const test = require('./models/productsModel');
 
 const app = express();
 app.use(express.json());
@@ -31,6 +31,12 @@ app.use(express.json());
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();
+});
+
+app.delete('/test/:id', async (req, res) => {
+  const { params: { id } } = req;
+  const result = await test.deleteById(id);
+  res.status(200).json(result);
 });
 
 app.get('/products/search', getByQuery);

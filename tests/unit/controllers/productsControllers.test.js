@@ -5,10 +5,10 @@ const sinonChai = require('sinon-chai');
 
 chai.use(sinonChai)
 
-const { getAllProducts, getById, insertProduct } = require('../../../src/controllers/productsControler');
+const { getAllProducts, getById, insertProduct, updateProduct } = require('../../../src/controllers/productsControler');
 const productService = require('../../../src/services/productsService');
 
-const {products, product, insertResponse} = require('./mocks/productsControllers.mock')
+const {products, product, insertResponse, updateResult} = require('./mocks/productsControllers.mock')
 
 describe('Testa a productController', function () {
   it('Verifica se é possivel recuperar todos os produtos', async function () {
@@ -66,6 +66,21 @@ describe('Testa a productController', function () {
 
     expect(res.status).to.have.been.calledWith(201);
     expect(res.json).to.have.been.calledWith(response);
+  });
+
+  it('Verifica se é possível atualizar um produto', async () => {
+    sinon.stub(productService, 'update').resolves(updateResult);
+
+    const req = { params: { id: 1 }, body: { name: 'teste3' } };
+    const res = {};
+
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+
+    await updateProduct(req, res);
+
+    expect(res.status).to.have.been.calledWith(200);
+    expect(res.json).to.have.been.calledWith(updateResult)
   });
   
   afterEach(sinon.restore)

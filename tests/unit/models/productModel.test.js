@@ -4,7 +4,16 @@ const sinon = require('sinon');
 const connection = require('../../../src/models/connection');
 const productsModel = require('../../../src/models/productsModel');
 
-const { productsDb, products, product, insertResponse } = require('./mocks/productsModel.mock');
+const {
+  productsDb,
+  products,
+  product,
+  insertResponse,
+  updateDbResult,
+  updateResult,
+  deleteDbResult,
+  deleteResult,
+} = require('./mocks/productsModel.mock');
 
 describe('Testa a productModel', () => {
   it('Verifica se é possível buscar todos os produtos utilizando o model de produtos', async () => {
@@ -34,6 +43,22 @@ describe('Testa a productModel', () => {
     expect(result.insertId).to.be.equal(4);
     expect(result.affectedRows).to.be.equal(1);
   })
+
+  it('Verifica se é possível atualizar um produto', async () => {
+    sinon.stub(connection, 'execute').resolves(updateDbResult)
+
+    const result = await productsModel.update(1, 'teste3');
+
+    expect(result).to.be.deep.equal(updateResult);
+  });
+
+  it('Verifica se é possível deletar um produto', async () => {
+    sinon.stub(connection, 'execute').resolves(deleteDbResult);
+
+    const result = await productsModel.deleteById(1);
+    
+    expect(result).to.be.deep.equal(deleteResult)
+  });
   
   afterEach(sinon.restore)
 });

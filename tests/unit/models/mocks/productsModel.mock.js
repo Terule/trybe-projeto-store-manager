@@ -47,9 +47,57 @@ const insertResponse = [
   null
 ];
 
+const updateDbResult = [
+  {
+    "fieldCount": 0,
+    "affectedRows": 1,
+    "insertId": 0,
+    "info": "Rows matched: 1  Changed: 0  Warnings: 0",
+    "serverStatus": 2,
+    "warningStatus": 0,
+    "changedRows": 0
+  },
+  null
+];
+
+const updateResult = {
+  "fieldCount": 0,
+  "affectedRows": 1,
+  "insertId": 0,
+  "info": "Rows matched: 1  Changed: 0  Warnings: 0",
+  "serverStatus": 2,
+  "warningStatus": 0,
+  "changedRows": 0
+}
+
+const deleteDbResult = [
+  {
+    "fieldCount": 0,
+    "affectedRows": 1,
+    "insertId": 0,
+    "info": "",
+    "serverStatus": 2,
+    "warningStatus": 0
+  },
+  null
+]
+
+const deleteResult = {
+    "fieldCount": 0,
+    "affectedRows": 1,
+    "insertId": 0,
+    "info": "",
+    "serverStatus": 2,
+    "warningStatus": 0
+  }
+
 module.exports = {
   productsDb,
   products,
   product,
-  insertResponse
+  insertResponse,
+  updateDbResult,
+  updateResult,
+  deleteDbResult,
+  deleteResult,
 };

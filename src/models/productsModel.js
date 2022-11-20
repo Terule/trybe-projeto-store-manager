@@ -25,12 +25,11 @@ const insert = async ({ name }) => {
 };
 
 const update = async (id, name) => {
-  await connection.execute(
+  const [result] = await connection.execute(
     `UPDATE StoreManager.products SET name = ?
     WHERE id = ?`,
     [name, id],
   );
-  const result = await getById(id);
   return result;
 };
 

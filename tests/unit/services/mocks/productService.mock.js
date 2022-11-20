@@ -27,8 +27,36 @@ const insertResponse = {
   "warningStatus": 0
 };
 
+const updateResult = {
+  id: 1,
+  name: 'teste3',
+}
+
+const deleteResult = {
+  "fieldCount": 0,
+  "affectedRows": 1,
+  "insertId": 0,
+  "info": "",
+  "serverStatus": 2,
+  "warningStatus": 0
+}
+
+const queryResult = [
+  {
+    "id": 2,
+    "name": "Traje de encolhimento"
+  },
+  {
+    "id": 3,
+    "name": "Escudo do Capitão América"
+  }
+]
+
 module.exports = {
   products,
   product,
   insertResponse,
+  updateResult,
+  deleteResult,
+  queryResult,
 };
